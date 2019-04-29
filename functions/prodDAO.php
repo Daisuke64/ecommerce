@@ -49,5 +49,4 @@ function deleteProduct($prod_id){
     $result = $conn->query($sql);
 }
 
-function sample(){};
 ?>
