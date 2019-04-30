@@ -1,20 +1,21 @@
 <?php
-   require '../functions/custDAO.php';
+   require '../classes/custDAO.php';
+   $custdao = new CustomerAccessObject;
    $cust_id = $_GET['id']; //this will hold the id passed from the url
-   $customer = retrieveSingleCustomer($cust_id);
+   $customer = $custdao->retrieveSingleCustomer($cust_id);
    if(isset($_POST['update'])){
        //intialization of variables
        //getting the data from the form
-       $cust_fname = $_POST['cust_fname'];
-       $cust_lname = $_POST['cust_lname'];
-       $cust_dob = $_POST['cust_dob'];
-       $cust_address = $_POST['cust_address'];
-       $cust_login_name = $_POST['cust_login_name'];
-       $cust_login_password = $_POST['cust_login_passwrod'];       
-       $cust_phone = $_POST['cust_phone'];
-       $cust_register = $_POST['cust_register_date'];
-       updateCustomer($cust_fname, $cust_lname, $cust_dob, $cust_address, $cust_login_name, $cust_login_password, $cust_phone, $cust_register, $cust_id);
-      header('Location: customer_tbl.php'); //this will redirect us to the product table after product adding
+        $cust_fname = $_POST['cust_fname'];
+        $cust_lname = $_POST['cust_lname'];
+        $cust_dob = $_POST['cust_dob'];
+        $cust_address = $_POST['cust_address'];
+        $cust_login_name = $_POST['cust_login_name'];
+        $cust_login_password = $_POST['cust_login_passwrod'];       
+        $cust_phone = $_POST['cust_phone'];
+        $cust_register = $_POST['cust_register_date'];
+        $custdao->updateCustomer($cust_fname, $cust_lname, $cust_dob, $cust_address, $cust_login_name, $cust_login_password, $cust_phone, $cust_register, $cust_id);
+        header('Location: customer_tbl.php'); //this will redirect us to the product table after product adding
    }
 
 ?>

@@ -1,6 +1,7 @@
 <?php
-    require '../functions/custDAO.php';
+    require '../classes/custDAO.php';
+    $custdao = new CustomerAccessObject;
     $cust_id = $_GET['id'];
-    deleteCompletelyCustomer($cust_id);
+    $custdao->deleteCompletelyCustomer($cust_id);
     header('Location: customer_recycletbl.php');
 ?>

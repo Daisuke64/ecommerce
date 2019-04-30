@@ -5,15 +5,16 @@
     }else{
         echo "Welcome User: ".$_SESSION['name']." <a href='../logout.php'>Logout</a>";
     }
-    require_once '../functions/ordDAO.php';
-    $prodlist = getProductList();
+    require_once '../classes/ordDAO.php';
+    $orderdao = new OrderAccessObject;
+    $prodlist = $orderdao->getProductList();
     $user_id = $_SESSION['id'];// this is where we get the cust_id
     if(isset($_POST['order'])){
         $prod_id = $_POST['prod_id'];
         $ord_quantity = $_POST['ord_quantity'];
         $ord_date_ordered = $_POST['ord_date_ordered'];
         $ord_date_released = $_POST['ord_date_released'];
-        addOrders($prod_id, $user_id, $ord_quantity, $ord_date_ordered, $ord_date_released);
+        $orderdao->addOrders($prod_id, $user_id, $ord_quantity, $ord_date_ordered, $ord_date_released);
     }
 ?>
 

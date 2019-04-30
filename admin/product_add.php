@@ -1,5 +1,7 @@
 <?php
-   require '../functions/prodDAO.php';
+   require '../classes/prodDAO.php';
+   //instatiate the product class
+   $proddao = new ProductAccessObject;
    if(isset($_POST['add'])){
        //intialization of variables
        //getting the data from the form
@@ -8,7 +10,7 @@
       $prod_date = $_POST['prod_date'];
       $prod_price = $_POST['prod_price'];
       $prod_stock = $_POST['prod_stock'];
-      addProduct($prod_name, $prod_desc, $prod_date, $prod_price, $prod_stock);
+      $proddao->addProduct($prod_name, $prod_desc, $prod_date, $prod_price, $prod_stock);
       header('Location: product_tbl.php'); //this will redirect us to the product table after product adding
    }
 

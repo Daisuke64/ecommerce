@@ -1,11 +1,12 @@
 <?php
-    require '../functions/custDAO.php';
+    require '../classes/custDAO.php';
+    $custdao = new CustomerAccessObject;
     $cust_id = $_GET['id'];
-    $customer = retrieveSingleCustomer($cust_id);
+    $customer = $custdao->retrieveSingleCustomer($cust_id);
     if(isset($_POST['submit'])){
         $confirm = $_POST['confirm'];
         if($confirm == 'return'){
-            returnCustomer($cust_id);
+            $custdao->returnCustomer($cust_id);
             header('Location: customer_recycletbl.php');
         }else{
             header('Location: customer_recycletbl.php');

@@ -1,11 +1,12 @@
 <?php
-    require '../functions/prodDAO.php';
+    require '../classes/prodDAO.php';
+    $proddao = new ProductAccessObject;
     $prod_id = $_GET['id'];
-    $product = retrieveSingleProduct($prod_id);
+    $product = $proddao->retrieveSingleProduct($prod_id);
     if(isset($_POST['submit'])){
         $confirm = $_POST['confirm'];
         if($confirm == 'delete'){
-            deleteProduct($prod_id);
+            $proddao->deleteProduct($prod_id);
             header('Location: product_tbl.php');
         }else{
             header('Location: product_tbl.php');

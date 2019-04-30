@@ -1,6 +1,7 @@
 <?php
-    require "../functions/prodDAO.php";
-    $prodlist = retrieveAllProducts();
+    require "../classes/prodDAO.php";
+    $proddao = new ProductAccessObject;
+    $prodlist = $proddao->retrieveAllProducts();
 ?>
 
 

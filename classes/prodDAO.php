@@ -1,0 +1,50 @@
+<?php
+
+    require 'connection.php';
+
+    class ProductAccessObject extends Datebase{
+
+        public function addProduct($prod_name, $prod_desc, $prod_date, $prod_price, $prod_stock){
+            $prod_date = date('Y-m-d'); //this will automatically get the current date.
+            $sql = "INSERT INTO product(prod_name, prod_desc, prod_date_added, prod_price, prod_stock) VALUES ('$prod_name', '$prod_desc', '$prod_date', '$prod_price','$prod_stock')";
+            $result = $this->conn->query($sql); // this will perform the addition of data to the table product
+            return $result;
+        }
+
+        public function retrieveAllProducts(){
+            $sql = "SELECT * FROM product WHERE prod_status ='A'";
+            $result = $this->conn->query($sql);// means execute and assign it to the result variable
+            $rows = array(); //this will hold all array results from the results variable
+        
+            while($row=$result->fetch_assoc()){
+                 //condition: as long as there is a set of arrays being passed to the rows array
+                 //the loop will not stop
+                 $rows[] = $row;
+                //  print_r($row);
+                //  echo "<br>";
+                 //so every row is assigned to the rows array
+            }
+            return $rows;
+        }
+        //retrieveAllProducts()
+        
+        public function retrieveSingleProduct($id){
+            $sql = "SELECT * FROM product WHERE prod_id = '$id'";
+            $result = $this->conn ->query($sql);
+            $row = $result->fetch_assoc(); //this will get a single result
+            return $row;
+        }
+        public function updateProduct($prod_name, $prod_desc, $prod_date, $prod_price, $prod_stock, $prod_id){
+            $sql = "UPDATE product SET prod_name = '$prod_name', prod_desc = '$prod_desc',
+                   prod_date_added = '$prod_date', prod_price = '$prod_price', prod_stock = '$prod_stock'
+                   WHERE prod_id = '$prod_id'";
+            $result = $this->conn->query($sql);
+        }
+        public function deleteProduct($prod_id){
+            $sql = "UPDATE product SET prod_status = 'D' WHERE prod_id = '$prod_id'";
+            $result = $this->conn->query($sql);
+        }
+    }
+
+
+?>

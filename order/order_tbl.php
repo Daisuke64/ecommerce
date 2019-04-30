@@ -1,7 +1,8 @@
 <?php
-    require '../functions/ordDAO.php';
+    require '../classes/ordDAO.php';
+    $orderdao = new OrderAccessObject;
     session_start();
-    $orderlist = getAllOrders($_SESSION['id']);
+    $orderlist = $orderdao->getAllOrders($_SESSION['id']);
     //this will fetch all orders made by the loggedin user
     //ex. if user sayie is logged in, she will only see her own lists of orders
 ?>

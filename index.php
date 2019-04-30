@@ -1,6 +1,7 @@
 <?php
     session_start(); //this will allows us to use the $_SESSION variables
-    require 'functions/custDAO.php';
+    require 'classes/custDAO.php';
+    $custdao = new CustomerAccessObject;
     if(isset($_POST['login'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -8,7 +9,7 @@
         //is inside the table cutomer
         //if it is inside, the result of the function will be assigned
         //to the variable $credentials
-        $credentials = login($username, $password);
+        $credentials = $custdao->login($username, $password);
         // checker
 
         if(!empty($credentials)){

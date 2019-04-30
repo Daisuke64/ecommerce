@@ -1,6 +1,7 @@
 <?php
-    require "../functions/custDAO.php";
-    $custlist = retrieveAllCustomers2();
+    require "../classes/custDAO.php";
+    $custdao = new CustomerAccessObject;
+    $custlist = $custdao->retrieveAllCustomers2();
 ?>
 
 

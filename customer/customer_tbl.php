@@ -6,8 +6,9 @@
     }else{
         echo "Welcome User: ".$_SESSION['name']." <a href='../logout.php'>Logout</a>";
     }
-    require "../functions/custDAO.php";
-    $custlist = retrieveAllCustomers();
+    require "../classes/custDAO.php";
+    $custdao = new CustomerAccessObject;
+    $custlist = $custdao->retrieveAllCustomers();
 ?>
 
 

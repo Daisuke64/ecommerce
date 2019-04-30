@@ -1,7 +1,8 @@
 <?php
-   require '../functions/prodDAO.php';
+   require '../classes/prodDAO.php';
+   $proddao = new ProductAccessObject;
    $prod_id = $_GET['id']; //this will hold the id passed from the url
-   $product = retrieveSingleProduct($prod_id);
+   $product = $proddao->retrieveSingleProduct($prod_id);
    if(isset($_POST['update'])){
        //intialization of variables
        //getting the data from the form
@@ -10,7 +11,7 @@
       $prod_date = $_POST['prod_date'];
       $prod_price = $_POST['prod_price'];
       $prod_stock = $_POST['prod_stock'];
-      updateProduct($prod_name, $prod_desc, $prod_date, $prod_price, $prod_stock, $prod_id);
+      $proddao->updateProduct($prod_name, $prod_desc, $prod_date, $prod_price, $prod_stock, $prod_id);
       header('Location: product_tbl.php'); //this will redirect us to the product table after product adding
    }
 

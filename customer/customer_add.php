@@ -1,13 +1,7 @@
 <?php
-   session_start();
-   //checker to check if the user already logged in
-   if($_SESSION['logstat'] !="Active"){
-       header('Location: ../index.php');
-   }else{
-       echo "Welcome User: ".$SESSION['name']." <a href='../logout.php'>Logout</a>";
-   }
-   
-   require '../functions/custDAO.php';
+ 
+   require '../classes/custDAO.php';
+   $custdao = new CustomerAccessObject;
    if(isset($_POST['add'])){
        //intialization of variables
        //getting the data from the form
@@ -19,7 +13,7 @@
       $cust_login_password = $_POST['cust_login_password'];
       $cust_phone = $_POST['cust_phone'];
       $cust_register = $_POST['cust_register_date'];
-      addCustomer($cust_fname, $cust_lname, $cust_dob, $cust_address, $cust_login_name, $cust_login_password, $cust_phone, $cust_register);
+      $custdao->addCustomer($cust_fname, $cust_lname, $cust_dob, $cust_address, $cust_login_name, $cust_login_password, $cust_phone, $cust_register);
       header('Location: customer_tbl.php'); //this will redirect us to the product table after product adding
    }
 
